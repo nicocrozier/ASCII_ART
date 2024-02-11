@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic ASCII Art</title>
+
+</head>
+<body>
+
+  <pre id="ascii-art" style="font-family: monospace; line-height: 13.4px; white-space: pre-wrap; display: flex; justify-content: center;">
+
+                             ..::..
+                      .=*%/7AA$$$$AA7/%*=.
+                   :*@A$$$A7/@@%%@@/7A$$$A@*:
+                 +@A$$7@*=.          .=*%7$$A/+
+               *7$$7%=                    =#7$$7*
+             =/$$7*.                         +/$$7=
+            #A$A*                              *7$$%
+          .@$$@.                                .@$$/.
+         ./$$% =%////////////////////@*           #$$/.
+         @$$% +$$$$$$$$$$$$$$$$$$$$$$$$/           #$$/
+        *$$@  #$$$$$$$$$$$@=:/$$$$$$$$$$#           @$$#
+       .A$A.   %7AAAAAAA/+  .7$$$$$$$$$$A=          .7$A:
+       #$$#      .......   ./$$$$$$$$$$$$/           *$$%
+       7$A:                /$$$A%#7$$$$$$$#          .A$7
+      .A$7                @$$$$#   @$$$$$$A:          /$A:
+      :$$/               %$$$$$@    %$$$$$$@          @$$=
+      :$$/              %$$$$$$@     %$$$$$$*         @$$=
+      .A$7             #$$$$/%#.      #$$$$$A.        /$A:
+       7$A:           *$$$7+           *A$$$$@       .A$7
+       #$$#          *A$$@.             +A$$$$+      *$$%
+       .A$A.        =$$A#                +A$$$7.    .7$A:
+        #$$@        :@@=                  =A$$$%    %$$#
+         @$$#                              =7$$$:  #$$/
+         ./$$#                              :/7/. #$$7.
+          ./$$@.                                .@$$/.
+            %$$7+                              +7$$%
+             +7$$/+                          +/$$7+
+               *7$$7#:                    :#7$$7#
+                 */$$$7%+:.          .:+%7$$$/*.
+                   :#/A$$$A7/@%%%%@/7A$$$A/#:
+                      .=*@/7A$$$$$$A7/@#=.
+                            ..::::..
+
+
+  </pre>
+
+
+    <script>
+        const asciiArtElement = document.getElementById('ascii-art');
+        let asciiArtText = asciiArtElement.textContent;
+        const characters = '.:*&^%$#@!~+=-;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        const textLength = asciiArtText.length;
+
+        function replaceCharacters() {
+            for (let i = 0; i < 100; i++) {
+                let randomIndex = Math.floor(Math.random() * textLength);
+                let randomChar = characters.charAt(Math.floor(Math.random() * characters.length));
+                let currentChar = asciiArtText.charAt(randomIndex);
+
+                if (currentChar !== '\n' && currentChar !== ' ') {
+                    asciiArtText = asciiArtText.substring(0, randomIndex) + randomChar + asciiArtText.substring(randomIndex + 1);
+                }
+            }
+            asciiArtElement.textContent = asciiArtText;
+        }
+
+        setInterval(replaceCharacters, 22); // Change 20 characters every 500 milliseconds (0.5 seconds)
+    </script>
+</body>
+</html>
